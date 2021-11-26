@@ -47,6 +47,10 @@
             ctx.fillStyle = "black";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+            //controladores
+            eax = 0.5*(x - ex) - (0.2*evx);
+            eay = 0.5*(y - ey) - (0.2*evy);
+            
             //atualiza dinamica dos estados
             vx = vx + ax*dt;
             vy = vy + ay*dt;
