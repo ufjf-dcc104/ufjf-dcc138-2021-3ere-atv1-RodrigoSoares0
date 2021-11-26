@@ -25,6 +25,13 @@
         let ay = 0;
         const K = 100;
 
+        let ex = 300;
+        let ey = 150;
+        let evx = 0;
+        let evy = 0;
+        let eax = 0;
+        let eay = 0;
+
         requestAnimationFrame(desenha);
 
         ctx.fillStyle = "black"; 
@@ -46,9 +53,19 @@
             x = x + vx*dt;
             y = y + vy*dt;
 
+            evx = evx + eax * dt;
+            evy = evy + eay * dt;
+            ex = ex + evx * dt;
+            ey = ey + evy * dt;
+
             //desenha elementos
             ctx.fillStyle = "white";
             ctx.fillRect(x, y, 20, 20);
+            
+
+            ctx.fillStyle = "gold";
+             ctx.fillRect(ex, ey, 20, 20);
+           
             requestAnimationFrame(desenha);
 
             t0 = t;
