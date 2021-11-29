@@ -23,7 +23,12 @@
          ax: 0,
          y : 150,
          vy : 0,
-         ay : 0
+         ay : 0,
+         desenhar: function()
+         {
+             ctx.fillStyle = "white";
+             ctx.fillRect(this.x, this.y, 20, 20);
+         }
         }
 
         let e =
@@ -33,7 +38,12 @@
             ax: 0,
             y : 150,
             vy : 0,
-            ay : 0
+            ay : 0,
+            desenhar: function()
+            {
+                ctx.fillStyle = "gold";
+                ctx.fillRect(this.x, this.y, 20, 20);
+            }
         }
 
         let t0;
@@ -74,12 +84,10 @@
             e.y = e.y + e.vy*dt;
 
             //desenha elementos
-            ctx.fillStyle = "white";
-            ctx.fillRect(p.x, p.y, 20, 20);
+            p.desenhar();
             
 
-            ctx.fillStyle = "gold";
-             ctx.fillRect(e.x, e.y, 20, 20);
+            e.desenhar();
            
             requestAnimationFrame(desenha);
 
