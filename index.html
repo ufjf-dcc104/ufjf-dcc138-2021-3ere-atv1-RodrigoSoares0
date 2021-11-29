@@ -39,7 +39,8 @@
             ay : 0,
             cor : "gold",
             desenhar: desenharElemento,
-            mover: moverElemento
+            mover: moverElemento,
+            controlar: perseguir
         }
 
         let t0;
@@ -65,17 +66,15 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             //controladores
-            e.ax = 0.5*(p.x - e.x) - (0.2*e.vx);
-            e.ay = 0.5*(p.y - e.y) - (0.2*e.vy);
-            
-            //atualiza dinamica dos estados
+            //e.controlar(x: 250, y: 120);
+            e.controlar(p);
 
+            //atualiza dinamica dos estados
             p.mover();
             e.mover();
 
             //desenha elementos
             p.desenhar();
-
             e.desenhar();
            
             requestAnimationFrame(desenha);
@@ -97,6 +96,18 @@
             this.y = this.y + this.vy * dt;
         }
         
+        function perseguir(alvo)
+        {
+            this.ax = 0.5 * (alvo.x - this.x) - (0.2 * this.vx);
+            this.ay = 0.5 * (alvo.y - this.y) - (0.2 * this.vy);
+        }
+
+        function evitar(alvo) 
+        {
+            this.ax = -0.5 * (alvo.x - this.x) - (0.2 * this.vx);
+            this.ay = -0.5 * (alvo.y - this.y) - (0.2 * this.vy);
+        }
+
         addEventListener("keydown", teclaPressionada);
         addEventListener("keyup", teclaSolta);
 
