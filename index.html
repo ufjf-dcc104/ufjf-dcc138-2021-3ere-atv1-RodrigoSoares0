@@ -29,19 +29,38 @@
          mover: moverElemento
         }
 
-        let e =
+        const sprites = [];
+        for(let ne = 0; ne < 20; ne++)
         {
-            x : 300,
-            vx: 0,
-            ax: 0,
-            y : 150,
-            vy : 0,
-            ay : 0,
-            cor : "gold",
-            desenhar: desenharElemento,
-            mover: moverElemento,
-            controlar: perseguir
+            let e =
+            {
+                x: canvas.width * Math.random(),
+                vx: 0,
+                ax: 0,
+                y: canvas.height * Math.random(),
+                vy: 0,
+                ay: 0,
+                cor: "gold",
+                desenhar: desenharElemento,
+                mover: moverElemento,
+                controlar: perseguir
+            }
+            sprites.push(e);
         }
+
+        //let e =
+        //{
+        //    x : 300,
+        //    vx: 0,
+        //    ax: 0,
+        //    y : 150,
+        //    vy : 0,
+        //    ay : 0,
+        //    cor : "gold",
+        //    desenhar: desenharElemento,
+        //    mover: moverElemento,
+        //    controlar: perseguir
+        //}
 
         let t0;
         let dt;
@@ -65,18 +84,25 @@
             ctx.fillStyle = "black";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            //controladores
-            //e.controlar(x: 250, y: 120);
-            e.controlar(p);
-
-            //atualiza dinamica dos estados
             p.mover();
-            e.mover();
-
-            //desenha elementos
             p.desenhar();
-            e.desenhar();
-           
+            
+            for(let s = 0; s < sprites.length; s++)
+            {
+                const sprite = sprites[s];
+                //controladores
+                //sprites.controlar(x: 250, y: 120);
+                
+                sprite.controlar(p);
+
+                //atualiza dinamica dos estados
+                
+                sprite.mover();
+
+                //desenha elementos
+                
+                sprite.desenhar();
+            }
             requestAnimationFrame(desenha);
 
             t0 = t;
@@ -139,19 +165,19 @@
             switch(e.key)
             {
                 case "ArrowLeft":
-                    p.vx = 0;
+                    //p.vx = 0;
                     p.ax = 0;
                     break;
                 case "ArrowRight":
-                    p.vx = 0;
+                    //p.vx = 0;
                     p.ax = 0;
                     break;
                 case "ArrowUp":
-                    p.vy = 0;
+                    //p.vy = 0;
                     p.ay = 0;
                     break;
                 case "ArrowDown":
-                    p.vy = 0;
+                    //p.vy = 0;
                     p.ay = 0;
                     break;
             }
