@@ -27,6 +27,8 @@
          vy : 0,
          ay : 0,
          cor : "white",
+         w: 40,
+         h: 15,
          desenhar: desenharElemento,
          mover: moverElemento
         }
@@ -43,6 +45,8 @@
                 vy: 0,
                 ay: 0,
                 cor: "gold",
+                w: 15,
+                h: 15,
                 desenhar: desenharElemento,
                 mover: moverElemento,
                 controlar: perseguir
@@ -58,6 +62,8 @@
                 vy: 0,
                 ay: 0,
                 cor: "blue",
+                w: 5,
+                h: 5,
                 desenhar: desenharElemento,
                 mover: moverElemento,
                 controlar: function()
@@ -95,7 +101,6 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             p.mover();
-            p.desenhar();
             
             for(let s = 0; s < sprites.length; s++)
             {
@@ -136,6 +141,8 @@
                 }
             }
 
+            p.desenhar();
+
             ctx.fillStyle = "green";
             ctx.font = "20px Impact"
             ctx.fillText(pontos, 10, 20);
@@ -148,7 +155,7 @@
         function desenharElemento() 
         {
             ctx.fillStyle = this.cor;
-            ctx.fillRect(this.x, this.y, 20, 20);
+            ctx.fillRect(this.x, this.y, this.w, this.h);
         }
 
         function moverElemento()
@@ -232,7 +239,7 @@
         //método AABB
         function colidiram(A, B)
         {
-            return !( (A.x > B.x + 20) || (A.x + 20 < B.x) || (A.y > B.y + 20) || (A.y + 20 < B.y) );
+            return !( (A.x > B.x + B.w) || (A.x + A.w < B.x) || (A.y > B.y + B.h) || (A.y + A.h < B.y) );
         }
 
 
