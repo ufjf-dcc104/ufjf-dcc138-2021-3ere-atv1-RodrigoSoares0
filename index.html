@@ -47,20 +47,28 @@
             }
             sprites.push(e);
         }
-
-        //let e =
-        //{
-        //    x : 300,
-        //    vx: 0,
-        //    ax: 0,
-        //    y : 150,
-        //    vy : 0,
-        //    ay : 0,
-        //    cor : "gold",
-        //    desenhar: desenharElemento,
-        //    mover: moverElemento,
-        //    controlar: perseguir
-        //}
+            let o =
+            {
+                x: -1000,
+                vx: 0,
+                ax: 0,
+                y: 150,
+                vy: 0,
+                ay: 0,
+                cor: "blue",
+                desenhar: desenharElemento,
+                mover: moverElemento,
+                controlar: function()
+                {
+                    if(this.x > canvas.width+60)
+                        {
+                            this.x = -1000;
+                            this.ax = 0;
+                            this.vx = 0;
+                        }
+                }
+            }
+            sprites.push(o);
 
         let t0;
         let dt;
@@ -93,7 +101,7 @@
                 //controladores
                 //sprites.controlar(x: 250, y: 120);
                 
-                sprite.controlar(p);
+                if(sprite.controlar) sprite.controlar(p);
 
                 //atualiza dinamica dos estados
                 
@@ -180,6 +188,15 @@
                     //p.vy = 0;
                     p.ay = 0;
                     break;
+                case " ":
+                    if(o.x === -1000)
+                    {
+                        o.x = p.x;
+                        o.y = p.y;
+                        o.vx = 200;
+                        o.ax = 100;
+                        break;
+                    }
             }
         }
 
